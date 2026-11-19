@@ -325,7 +325,17 @@ if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "36" ]; then
             ! grep -q -r "IQtiComposer" "$WORK_DIR/vendor/etc/vintf"; then
         PATCHED=true
         # [b.lt #0x729be8] -> [nop]
-        HEX_PATCH "$WORK_DIR/system/system/bin/surfaceflinger" "9f8a00712b03005400068052" "9f8a00711f2003d500068052"
+        SF_BIN="$WORK_DIR/system/system/bin/surfaceflinger"
+        if xxd -p -c 0 "$SF_BIN" | grep -q "9f8a00712b03005400068052"; then
+            HEX_PATCH "$SF_BIN" "9f8a00712b03005400068052" "9f8a00711f2003d500068052"
+        else
+            # DZH1 (One UI 8.5): the check is inlined in three Qti extension creators
+            # [b.lt #0xXXXXXX] -> [nop]
+            HEX_PATCH "$SF_BIN" "9f8a0071cb010054" "9f8a00711f2003d5"
+            HEX_PATCH "$SF_BIN" "9f8a00710b020054" "9f8a00711f2003d5"
+            HEX_PATCH "$SF_BIN" "1f8b00710b020054" "1f8b00711f2003d5"
+        fi
+        unset SF_BIN
     fi
 fi
 
