@@ -1,0 +1,3 @@
+
+# Fix RIL on Android 16
+ro.telephony.sim_slots.count=2
