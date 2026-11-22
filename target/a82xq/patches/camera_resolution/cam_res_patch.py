@@ -153,5 +153,5 @@ for d, _, fs in os.walk(root):
             lbl = ':a82xq_div_ok_%d' % cnt[0]; cnt[0] += 1
             return ('%s%s\n%sif-nez %s, %s\n\n%sconst/16 %s, 0x1\n\n%s%s\n%s%s %s\n'
                     % (ind, TAG3, ind, div, lbl, ind, div, ind, lbl, ind, op, regs))
-        t = re.sub(r'^( +)((?:div|rem)-int(?:/2addr)?) (v\d+, v\d+(?:, v\d+)?)\n', guard, t, flags=re.M)
+        t = re.sub(r'^( +)((?:div|rem)-int(?:/2addr)?) ([vp]\d+, [vp]\d+(?:, [vp]\d+)?)\n', guard, t, flags=re.M)
         wr(p, t); print('ok   div0 guard %s: %d' % (os.path.relpath(p, root), cnt[0]))
