@@ -4,6 +4,6 @@ F="$(find "$APKTOOL_DIR/system/priv-app/SecSettings/SecSettings.apk" -name Batte
 [ -f "$F" ] || ABORT "BatteryRegulatoryPreferenceController.smali not found"
 if ! grep -q "a82xq-battinfo" "$F"; then
     LOG "- Enabling battery cycle/health info for SM-A826S"
-    sed -i 's/^    const-string v1, "SM-S928N"$/    const-string v1, "SM-A826S" # a82xq-battinfo/' "$F"
+    sed -i -E 's/^    const-string v1, "SM-[A-Z0-9]+"$/    const-string v1, "SM-A826S" # a82xq-battinfo/' "$F"
     grep -q "a82xq-battinfo" "$F" || ABORT "battery_info patch did not apply"
 fi
