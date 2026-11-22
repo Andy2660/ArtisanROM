@@ -390,7 +390,7 @@ index 00000000..c8afba57
 +    invoke-virtual {v1, v0, v3}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 +
 +    :cond_1
-+    const-string v0, "SEC_FLOATING_FEATURE_LCD_CONFIG_AOD_FULLSCREEN"
++    const-string v0, "SEC_FLOATING_FEATURE_LCD_CONFIG_AOD_FULLSCREEN_UNICA_OFF"
 +
 +    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 +
