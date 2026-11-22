@@ -1,0 +1,4 @@
+id=battery_info
+name=Battery info (cycle count)
+author=Andy2660
+description=Show battery regulatory info (cycle count, health) on SM-A826S
