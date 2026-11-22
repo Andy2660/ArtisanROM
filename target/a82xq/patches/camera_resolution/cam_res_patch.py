@@ -136,3 +136,22 @@ for d, _, fs in os.walk(root):
             k += 1
         if done:
             wr(p, t); print('ok   qsmap %s: %d map(s)' % (os.path.relpath(p, root), done))
+
+# 6) ZoomShortcutListView item decoration divides by (item count - 1); with a single zoom
+#    shortcut (64MP mode on a82xq) that is 0 -> ArithmeticException. Guard every int divisor.
+TAG3 = '# a82xq-div0-guard'
+for d, _, fs in os.walk(root):
+    for f in fs:
+        if f != 'ZoomShortcutListView$ContentsItemDecoration.smali': continue
+        p = os.path.join(d, f)
+        t = rd(p)
+        if TAG3 in t: continue
+        cnt = [0]
+        def guard(m):
+            ind, op, regs = m.group(1), m.group(2), m.group(3)
+            div = regs.split(',')[-1].strip()
+            lbl = ':a82xq_div_ok_%d' % cnt[0]; cnt[0] += 1
+            return ('%s%s\n%sif-nez %s, %s\n\n%sconst/16 %s, 0x1\n\n%s%s\n%s%s %s\n'
+                    % (ind, TAG3, ind, div, lbl, ind, div, ind, lbl, ind, op, regs))
+        t = re.sub(r'^( +)((?:div|rem)-int(?:/2addr)?) (v\d+, v\d+(?:, v\d+)?)\n', guard, t, flags=re.M)
+        wr(p, t); print('ok   div0 guard %s: %d' % (os.path.relpath(p, root), cnt[0]))

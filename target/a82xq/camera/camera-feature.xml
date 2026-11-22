@@ -11,7 +11,6 @@
     <local name="SHOOTING_MODE_NIGHT" back="NIGHT" front="NIGHT" enable="true" more="true" order="8"/>
     <local name="SHOOTING_MODE_FOOD" back="FOOD" enable="true" more="true" order="9"/>
     <local name="SHOOTING_MODE_PANORAMA" back="PANORAMA" enable="true" more="true" order="10" preview-size="1920x1080" capture-size="4000x3000"/>
-    <local name="SHOOTING_MODE_SUPER_SLOW_MOTION" back="SUPER_SLOW_MOTION" enable="true" more="true" order="12" preview-size="1280x720" capture-size="1280x720"/>
     <local name="SHOOTING_MODE_SLOW_MOTION" back="SLOW_MOTION" front="SLOW_MOTION" enable="true" more="true" order="13" preview-size="1920x1080" capture-size="1920x1080"/>
     <local name="SHOOTING_MODE_HYPER_LAPSE" back="HYPER_LAPSE" front="HYPER_LAPSE" enable="true" more="true" order="14" preview-size="1920x1080" capture-size="1920x1080"/>
     <local name="SHOOTING_MODE_LIVE_FOCUS_VIDEO" back="LIVE_FOCUS_VIDEO" front="LIVE_FOCUS_VIDEO" enable="true" more="true" order="15" preview-size="1920x1080" capture-size="1920x1080"/>
