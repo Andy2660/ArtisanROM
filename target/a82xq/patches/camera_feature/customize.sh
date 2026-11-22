@@ -13,3 +13,12 @@ sed -i \
     -e 's/"3472x3472"/"2992x2992"/g' \
     -e 's/"2576x1160"/"2576x1932"/g' \
     "$WORK_DIR/system/system/cameradata/camera-feature.xml"
+
+# Shooting modes the S24U camera app does not know (ShootingModeIdByName NPE)
+LOG "- Remapping camera-feature.xml shooting modes for the S24U camera app"
+sed -i \
+    -e 's/front="LIVE_FOCUS_LITE"/front="SELFIE_FOCUS"/' \
+    -e '/name="SHOOTING_MODE_MACRO"/d' \
+    -e '/name="SHOOTING_MODE_QR"/d' \
+    -e '/name="SHOOTING_MODE_PRO_VIDEO"/d' \
+    "$WORK_DIR/system/system/cameradata/camera-feature.xml"
