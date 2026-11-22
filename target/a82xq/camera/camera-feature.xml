@@ -226,4 +226,12 @@
     <!-- camera assistant features -->
     <local name="SUPPORT_CAMERA_ASSISTANT" value="true"/>
 
+    <!-- a82xq: Camera Assistant (S24U keys usable on this hardware) -->
+    <local name="SUPPORT_CAMERA_ASSISTANT_AUTO_LENS_SWITCHING" value="true"/>
+    <local name="SUPPORT_CAMERA_ASSISTANT_DIGITAL_ZOOM_UPSCALE" value="true"/>
+    <local name="SUPPORT_CAMERA_ASSISTANT_PRO_MODE_PRESETS" value="true"/>
+    <local name="SUPPORT_CAMERA_ASSISTANT_CUSTOMIZE_INDICATORS" value="true"/>
+    <local name="SUPPORT_CAMERA_ASSISTANT_ADDITIONAL_MODE_SINGLE_TAKE" value="true"/>
+    <local name="SUPPORT_CAMERA_ASSISTANT_ANAMORPHIC_LENS" value="true"/>
+    <local name="SUPPORT_CAMERA_ASSISTANT_DOF_ADAPTER" value="true"/>
 </resources>
