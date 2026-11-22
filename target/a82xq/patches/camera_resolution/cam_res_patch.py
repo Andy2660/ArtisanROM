@@ -96,3 +96,43 @@ for d, _, fs in os.walk(root):
                 break
         if changed:
             wr(p, t); print('ok   map %s: +%d' % (os.path.relpath(p, root), changed))
+
+# 5) quick-setting picture-size icon maps (a: icons, b: indicator icons, filled in <clinit> by
+#    reusing key registers, and read without null checks): give every new size the 4000X3000 entry
+#    (or 4032X3024) right before each map is stored.
+TAG2 = '# a82xq-res-qsmap'
+k = 0
+for d, _, fs in os.walk(root):
+    for f in fs:
+        if not f.endswith('.smali'): continue
+        p = os.path.join(d, f)
+        t = rd(p)
+        if 'picture_resolution' not in t or TAG2 in t: continue
+        sputs = list(re.finditer(r'\n(    sput-object (v\d+), (L[^;]+;)->(\w+):(L[^;]+;)\n)', t))
+        done = 0
+        for m in reversed(sputs):
+            reg = m.group(2)
+            prev = max(t.rfind('sput-object', 0, m.start()), t.rfind('.method', 0, m.start()))
+            block = t[prev:m.start()]
+            if 'picture_resolution' not in block or 'AbstractMap;->put' not in block: continue
+            if reg in ('v1', 'v2') or int(reg[1:]) > 15: continue
+            code = '\n    %s\n' % TAG2
+            for i, (n, *_ ) in enumerate(NEW):
+                ok, skip = ':a82xq_qs_%d_%d_ok' % (k, i), ':a82xq_qs_%d_%d_skip' % (k, i)
+                code += ('    sget-object v1, {R}->RESOLUTION_4000X3000:{R}\n\n'
+                         '    invoke-virtual {{{M}, v1}}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;\n\n'
+                         '    move-result-object v1\n\n'
+                         '    if-nez v1, {ok}\n\n'
+                         '    sget-object v1, {R}->RESOLUTION_4032X3024:{R}\n\n'
+                         '    invoke-virtual {{{M}, v1}}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;\n\n'
+                         '    move-result-object v1\n\n'
+                         '    {ok}\n'
+                         '    if-eqz v1, {skip}\n\n'
+                         '    sget-object v2, {R}->{n}:{R}\n\n'
+                         '    invoke-virtual {{{M}, v2, v1}}, Ljava/util/HashMap;->putIfAbsent(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\n\n'
+                         '    {skip}\n').format(R=RES, M=reg, n=n, ok=ok, skip=skip)
+            t = t[:m.start() + 1] + code + '\n' + t[m.start() + 1:]
+            done += 1
+            k += 1
+        if done:
+            wr(p, t); print('ok   qsmap %s: %d map(s)' % (os.path.relpath(p, root), done))
