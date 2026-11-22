@@ -1,0 +1,4 @@
+id=kernel
+name=BlueSky kernel
+author=Andy2660
+description=Use the upstreamed kernel for One UI 7 instead of the stock one.
