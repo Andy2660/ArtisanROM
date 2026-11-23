@@ -21,5 +21,5 @@ SEC_FLOATING_FEATURE_SETTINGS_CONFIG_ELECTRIC_RATED_VALUE=DC 9 V; 1.67 A / DC 9 
 # Enable full screen AOD (S24U style)
 SEC_FLOATING_FEATURE_LCD_CONFIG_AOD_FULLSCREEN=1
 
-# Battery protection: show Maximum level slider (80/85/90/95%)
+# Battery protection: show Maximum level slider
 SEC_FLOATING_FEATURE_BATTERY_SUPPORT_LONGLIFE_OPTION=TRUE
