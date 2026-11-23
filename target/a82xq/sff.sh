@@ -20,3 +20,7 @@ SEC_FLOATING_FEATURE_SETTINGS_CONFIG_ELECTRIC_RATED_VALUE=DC 9 V; 1.67 A / DC 9 
 
 # Enable full screen AOD (S24U style)
 SEC_FLOATING_FEATURE_LCD_CONFIG_AOD_FULLSCREEN=1
+
+# Battery protection: A826S ships DISABLE_ECO_BATTERY=TRUE, which makes Device Care
+# fall back to the legacy protect-battery implementation (no 80-95% level slider)
+SEC_FLOATING_FEATURE_BATTERY_DISABLE_ECO_BATTERY=FALSE
