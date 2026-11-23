@@ -87,7 +87,7 @@ index 96fe139..6db91b7 100644
 +
 +    mul-float/2addr v0, p2
 +
-+    sget-boolean p2, Lcom/android/server/power/PowerManagerUtil;->USE_PERSONAL_AUTO_BRIGHTNESS_V3:Z
++    const/4 p2, 0x1 # a82xq: legacy SehLights panels expect brightness x100 (stock AUTO_BRIGHTNESS_TYPE 4)
 +
 +    if-eqz p2, :cond_4
 +
