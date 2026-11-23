@@ -60,19 +60,19 @@ index 084b994..136d975 100644
 +
 +    const-string v0, "PRODUCT"
 +
-+    const-string v1, "e3qxxx"
++    const-string v1, "e3qksx"
 +
 +    invoke-static {v0, v1}, Lio/mesalabs/unica/SamsungPropsHooks;->setBuildField(Ljava/lang/String;Ljava/lang/Object;)V
 +
 +    const-string v0, "MODEL"
 +
-+    const-string v1, "SM-S928B"
++    const-string v1, "SM-S928N"
 +
 +    invoke-static {v0, v1}, Lio/mesalabs/unica/SamsungPropsHooks;->setBuildField(Ljava/lang/String;Ljava/lang/Object;)V
 +
 +    const-string v0, "FINGERPRINT"
 +
-+    const-string/jumbo v1, "samsung/e3qxxx/e3q:16/BP4A.251205.006/S928BXXS1DZE1:user/release-keys"
++    const-string/jumbo v1, "samsung/e3qksx/e3q:16/BP4A.251205.006/S928NKSS6DZH2:user/release-keys"
 +
 +    invoke-static {v0, v1}, Lio/mesalabs/unica/SamsungPropsHooks;->setBuildField(Ljava/lang/String;Ljava/lang/Object;)V
 +
@@ -251,7 +251,7 @@ index 084b994..136d975 100644
 +    goto :cond_galaxy_none
 +
 +    :cond_galaxy_model
-+    const-string v0, "SM-S928B"
++    const-string v0, "SM-S928N"
 +
 +    goto :goto_0
 +
@@ -261,7 +261,7 @@ index 084b994..136d975 100644
 +    goto :goto_0
 +
 +    :cond_galaxy_name
-+    const-string v0, "e3qxxx"
++    const-string v0, "e3qksx"
 +
 +    goto :goto_0
 +
@@ -271,12 +271,12 @@ index 084b994..136d975 100644
 +    goto :goto_0
 +
 +    :cond_galaxy_fingerprint
-+    const-string/jumbo v0, "samsung/e3qxxx/e3q:16/BP4A.251205.006/S928BXXS1DZH1:user/release-keys"
++    const-string/jumbo v0, "samsung/e3qksx/e3q:16/BP4A.251205.006/S928NKSS6DZH2:user/release-keys"
 +
 +    goto :goto_0
 +
 +    :cond_galaxy_description
-+    const-string v0, "e3qxxx-user 16 BP4A.251205.006 S928BXXS1DZH1 release-keys"
++    const-string v0, "e3qksx-user 16 BP4A.251205.006 S928NKSS6DZH2 release-keys"
 +
 +    goto :goto_0
 +

@@ -13,3 +13,5 @@ if ! grep -q "a82xq-ramplus" "$NS"; then
     sed -i '/^\.method public static getAvailSizeList()/,/^\.end method/ s/^    long-to-int v2, v4$/    long-to-int v2, v4\n\n    const\/16 v2, 0x8 # a82xq-ramplus/' "$NS"
     grep -q "a82xq-ramplus" "$NS" || ABORT "RAM Plus patch did not apply"
 fi
+# Galaxy Store device spoof on by default (off -> 9909 "api level mismatch" for Voice Recorder etc.)
+SET_PROP "system" "persist.sys.unica.galaxy_store_spoof" "true"
