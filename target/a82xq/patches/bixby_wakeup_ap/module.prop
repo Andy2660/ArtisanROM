@@ -1,0 +1,4 @@
+id=bixby_wakeup_ap
+name=Bixby wakeup without DSP
+author=Andy2660
+description=WCD9340 WDSP cannot run new wakeup model; never use DSP (no STHAL hang)

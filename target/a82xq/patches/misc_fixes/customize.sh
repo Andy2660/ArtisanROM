@@ -13,8 +13,3 @@ if ! grep -q "a82xq-ramplus" "$NS"; then
     sed -i '/^\.method public static getAvailSizeList()/,/^\.end method/ s/^    long-to-int v2, v4$/    long-to-int v2, v4\n\n    const\/16 v2, 0x8 # a82xq-ramplus/' "$NS"
     grep -q "a82xq-ramplus" "$NS" || ABORT "RAM Plus patch did not apply"
 fi
-
-# 하이 빅스비 제거: 새 호출어 모델을 WCD9340 코덱 DSP가 실행 못 함 -> STHAL 멈춤 -> 오디오 HAL 재시작 반복/system_server 크래시
-# 앱을 지워 음성 호출 메뉴 자체를 없앰 (측면 버튼 호출은 영향 없음)
-DELETE_FROM_WORK_DIR "system" "system/app/BixbyWakeup"
-DELETE_FROM_WORK_DIR "system" "system/etc/permissions/privapp-permissions-com.samsung.android.bixby.wakeup.xml"
