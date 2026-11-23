@@ -1,0 +1,4 @@
+id=no_lockdown
+name=No lockdown in power menu
+author=Andy2660
+description=Hide Lockdown item from the power menu (One UI 8.5 has no toggle for it)
