@@ -1,0 +1,4 @@
+id=wfd_smartview_fix
+name=Smart View black screen fix (I-08)
+author=Andy2660
+description=Marshal ANWBuffer metadata as a GraphicBuffer for the legacy 32-bit OMX encoder (port of MinsOS/GoRhanHee I-08 to S928NKSS6DZH2)
