@@ -1,0 +1,4 @@
+id=wireless_dex
+name=Wireless DeX
+author=Andy2660
+description=Add DesktopModeUiService + KnoxDesktopLauncher (from S918N One UI 8.0) and allow them as system preloads; KOO firmware ships without them

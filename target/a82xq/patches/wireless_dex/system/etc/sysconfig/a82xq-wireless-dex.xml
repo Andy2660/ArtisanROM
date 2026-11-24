@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <allowed-system-preload package="com.sec.android.desktopmode.uiservice"/>
+    <allowed-system-preload package="com.sec.android.app.desktoplauncher"/>
+</config>
