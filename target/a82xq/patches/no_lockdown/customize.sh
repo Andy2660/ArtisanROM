@@ -21,3 +21,10 @@ SCC_SMALI="$(find "$APKTOOL_DIR/system/framework/framework.jar" -path '*com/sams
 grep -q "a82xq-lockdown-cond" "$SCC_SMALI" || \
 sed -i '/^    :pswitch_1f$/,/^    return p0$/ s/^    const\/4 p0, 0x1$/    iget-object p0, p0, Lcom\/samsung\/android\/globalactions\/util\/SystemConditionChecker;->mUtilFactory:Lcom\/samsung\/android\/globalactions\/util\/UtilFactory;\n    const-class p1, Lcom\/samsung\/android\/globalactions\/util\/SettingsWrapper;\n    invoke-interface {p0, p1}, Lcom\/samsung\/android\/globalactions\/util\/UtilFactory;->get(Ljava\/lang\/Class;)Ljava\/lang\/Object;\n    move-result-object p0\n    check-cast p0, Lcom\/samsung\/android\/globalactions\/util\/SettingsWrapper;\n    invoke-virtual {p0}, Lcom\/samsung\/android\/globalactions\/util\/SettingsWrapper;->isLockDownInPowerMenu()Z\n    move-result p0 # a82xq-lockdown-cond/' "$SCC_SMALI"
 grep -q "a82xq-lockdown-cond" "$SCC_SMALI" || ABORT "lockdown condition patch failed"
+
+# SecDisplaySettingsReceiver rewrites Settings.Secure lockdown_in_power_menu on every boot,
+# undoing the user's toggle. Redirect that write to an unused key.
+SDR_SMALI="$(find "$APKTOOL_DIR/system/priv-app/SecSettings/SecSettings.apk" -name 'SecDisplaySettingsReceiver.smali' | head -1)"
+[ -f "$SDR_SMALI" ] || ABORT "SecDisplaySettingsReceiver.smali not found"
+sed -i 's/^    const-string p0, "lockdown_in_power_menu"$/    const-string p0, "a82xq_lockdown_boot_reset_disabled" # a82xq-lockdown-noreset/' "$SDR_SMALI"
+grep -q "a82xq-lockdown-noreset" "$SDR_SMALI" || ABORT "lockdown boot reset patch failed"
